@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/0001_added_entity_company.xml
+  - include:
+      file: db/changelog/0002_added_entity_employee.xml
+  - include:
+     file: db/changelog/0003_added_entity_department.xml
+  - include:
+     file: db/changelog/0004_added_entity_profile.xml
+  - include:
+     file: db/changelog/0005_added_entity_constraints_employee.xml
+  - include:
+     file: db/changelog/0006_added_entity_customer.xml
+  - include:
+     file: db/changelog/0007_added_collection_customer_item_quantity_map.xml
+  - include:
+     file: db/changelog/0008_added_collection_customer_phones.xml
+  - include:
+     file: db/changelog/0009_added_entity_contact.xml
