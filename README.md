@@ -1,2 +1,2 @@
 # jpa-play
-Sandpit for JPA + Hibernate experiments - from basics to the Unknown !! 
+Sandpit for SpringBoot + JPA + Tests - from basics to the Unknown !! 
