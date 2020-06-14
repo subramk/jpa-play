@@ -5,6 +5,12 @@ import java.util.List;
 
 import com.jpa.play.persistence.entity.Model;
 
+/**
+ *
+ * UNUSED ....
+ *
+ *
+ */
 public interface Repository {
 
     <T extends Model> T find(Class<T> clazz, Serializable id);
