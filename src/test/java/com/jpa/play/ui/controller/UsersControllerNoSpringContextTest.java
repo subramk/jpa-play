@@ -1,11 +1,11 @@
-package com.ui.controller;
+package com.jpa.play.ui.controller;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.jpa.play.persistence.model.User;
-import com.service.layer.UserService;
+import com.jpa.play.persistence.model.Users;
+import com.jpa.play.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Assert;
@@ -36,10 +36,10 @@ public class UsersControllerNoSpringContextTest {
 
     @Test
     public void testFindAllUsers() throws Exception  {
-        List<User> userList = new ArrayList<User>();
-        userList.add( new User());
+        List<Users> usersList = new ArrayList<Users>();
+        usersList.add( new Users());
         usersController.findAll();
-        when(userService.findAll()).thenReturn(userList);
+        when(userService.findAll()).thenReturn(usersList);
         verify(userService,times(1)).findAll();
 
     }

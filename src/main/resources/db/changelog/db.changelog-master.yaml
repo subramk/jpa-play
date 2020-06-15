@@ -17,3 +17,5 @@ databaseChangeLog:
      file: db/changelog/0008_added_collection_customer_phones.xml
   - include:
      file: db/changelog/0009_added_entity_contact.xml
+  - include:
+      file: db/changelog/0010_added_entity_users.xml

@@ -1,0 +1,31 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.idea/libraries
+
+
+### MVN ###
+.mvn
+*.log
+*.out
+*.pid
+.tmp
+.temp
+dist
+build
+.settings
+.classpath
+.project
+bin/

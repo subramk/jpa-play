@@ -1,4 +1,4 @@
-package com.ui.controller;
+package com.jpa.play.ui.controller;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -6,8 +6,8 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.jpa.play.persistence.model.User;
-import com.service.layer.UserService;
+import com.jpa.play.persistence.model.Users;
+import com.jpa.play.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Assert;
@@ -40,10 +40,10 @@ public class UsersControllerTest {
 
     @Test
     public void testFindAllUsers() throws Exception  {
-        List<User> userList = new ArrayList<User>();
-        userList.add( new User());
+        List<Users> usersList = new ArrayList<Users>();
+        usersList.add( new Users());
 
-        when(userService.findAll()).thenReturn(userList);
+        when(userService.findAll()).thenReturn(usersList);
 
         mvc .perform(get("/users/findAll")
                 .contentType(MediaType.APPLICATION_JSON))
