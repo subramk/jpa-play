@@ -16,7 +16,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 
-public class UsersControllerNoSpringContextTest {
+public class UsersControllerNoSpringContextTests {
 
     @InjectMocks
     private UsersController usersController;
@@ -38,8 +38,8 @@ public class UsersControllerNoSpringContextTest {
     public void testFindAllUsers() throws Exception  {
         List<Users> usersList = new ArrayList<Users>();
         usersList.add( new Users());
-        usersController.findAll();
         when(userService.findAll()).thenReturn(usersList);
+        usersController.findAll();
         verify(userService,times(1)).findAll();
 
     }

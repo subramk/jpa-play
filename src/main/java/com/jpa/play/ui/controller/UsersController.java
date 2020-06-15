@@ -1,7 +1,7 @@
 package com.jpa.play.ui.controller;
 
-import com.jpa.play.service.UserService;
 import com.jpa.play.persistence.model.Users;
+import com.jpa.play.service.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
