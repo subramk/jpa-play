@@ -6,34 +6,31 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.jpa.play.JpaPlayApplication;
 import com.jpa.play.persistence.model.User;
 import com.service.layer.UserService;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = JpaPlayApplication.class)
-@ContextConfiguration(classes = JpaPlayApplication.class)
+@SpringBootTest(classes = UsersController.class)
 @AutoConfigureMockMvc
-public class UsersControllerTest extends BaseTest{
+public class UsersControllerTest {
+
+    @Autowired
+    private MockMvc mvc;
 
     @MockBean
     private UserService userService;
-
-    @InjectMocks
-    UsersController usersController;
 
     @Test
     //  Remove later once tests are sorted out...
@@ -41,19 +38,18 @@ public class UsersControllerTest extends BaseTest{
         Assert.assertTrue(true);
     }
 
-    //@Test
+    @Test
     public void testFindAllUsers() throws Exception  {
         List<User> userList = new ArrayList<User>();
         userList.add( new User());
 
         when(userService.findAll()).thenReturn(userList);
 
-        mockMvc .perform(get("/users/findAll")
+        mvc .perform(get("/users/findAll")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-
-        verify(userService.findAll(),times(1));
+        verify(userService,times(1)).findAll();
 
     }
 
