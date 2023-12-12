@@ -7,35 +7,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.jpa.play.persistence.model.Users;
+import com.jpa.play.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RequestMapping("/users")
 @RestController
 public class UsersController {
-
     @Autowired
     private UserService userService;
 
+    @GetMapping(value = "/{name}")
+    @ResponseBody
+    public ResponseEntity<Users> findByName(@PathVariable final String name) {
+        Users users =  userService.findByName(name);
+        return ResponseEntity.ok(users);
+    }
 
-    @GetMapping(value="/users/findAll")
+    @GetMapping(value = "/findAll")
     @ResponseBody
     public ResponseEntity<List<Users>> findAll() {
         List<Users> users = userService.findAll();
         return ResponseEntity.ok(users);
-
     }
 
-    @GetMapping(value="/users/{name}")
-    @ResponseBody
-    public Users findByName(@PathVariable final String name ){
-        return userService.findByName(name);
-    }
-
-
-//    @PostMapping(value ="/load")
+ //    @PostMapping(value ="/load")
 //    public User load(@RequestBody final User user) {
 //        userService.save(user);
 //        return userService.findByName(user.getName());
 //    }
 
 }
+

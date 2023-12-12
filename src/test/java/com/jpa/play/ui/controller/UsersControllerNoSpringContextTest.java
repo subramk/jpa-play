@@ -1,22 +1,20 @@
 package com.jpa.play.ui.controller;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import com.jpa.play.persistence.model.Users;
 import com.jpa.play.service.UserService;
-import java.util.ArrayList;
-import java.util.List;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class UsersControllerNoSpringContextTests {
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.*;
+
+public class UsersControllerNoSpringContextTest {
 
     @InjectMocks
     private UsersController usersController;
@@ -24,14 +22,14 @@ public class UsersControllerNoSpringContextTests {
     @Mock
     private UserService userService;
 
-    @Before
+    @BeforeEach
     public  void  setUp() {
         MockitoAnnotations.initMocks(this);
     }
     @Test
     //  Remove later once tests are sorted out...
     public void dummy(){
-        Assert.assertTrue(true);
+        assertTrue(true);
     }
 
     @Test
@@ -43,5 +41,4 @@ public class UsersControllerNoSpringContextTests {
         verify(userService,times(1)).findAll();
 
     }
-
 }
