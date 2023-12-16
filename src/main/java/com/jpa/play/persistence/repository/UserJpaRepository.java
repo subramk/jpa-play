@@ -1,13 +1,10 @@
 package com.jpa.play.persistence.repository;
 
-import java.util.List;
-
-import jakarta.persistence.EntityManagerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.jpa.play.persistence.model.Users;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface UserJpaRepository extends JpaRepository<Users, Long> {
