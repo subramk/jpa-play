@@ -1,28 +1,55 @@
-#
-#
-#spring:
-#  activemq:
-#    broker-url:
-#  flyway:
-#    fail-on-missing-locations:false
-#  jpa:
-#    properties:
-#      hibernate:
-#        format_sql: true
-#        dialect: org.hibernate.dialect.MySQLDialect
-#    database-platform: org.hibernate.dialect.MySQLDialect
-#  profiles:
-#    active: application
-#
-#
-#org:
-#  hibernate:
-#    dialect:
-#      Dialect:org.hibernate.dialect.MySQLDialect
-#
-#liquibase:
-#    change-log: classpath:db/changelog/db.changelog-master.yml
-#
-#
-#javax
-#  persistenc
+
+server:
+  port:8091
+
+spring:
+  activemq:
+    broker-url:
+  flyway:
+    fail-on-missing-locations: true
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+
+  datasource:
+    test-while-idle: true
+    validation-query: SELECT 1
+    url: jdbc:mysql://localhost:3306/mySchema
+    username: root
+    password: secret
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  profiles:
+    active: application
+    default: application
+
+
+org:
+  hibernate:
+    dialect:
+      Dialect:org.hibernate.dialect.MySQLDialect
+    connection:
+      url:org.hibernate.dialect.MySQLDialect
+
+liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yml
+
+javax:
+  persistence:
+    jdbc:
+      url:jdbc:mysql://localhost:3306/db_example
+
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: TRACE
+
