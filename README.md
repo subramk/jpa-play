@@ -9,6 +9,4 @@ user=root and password=secret . These values are in the application.properties a
 -- docker for mysql
 docker run -d --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_DATABASE=mySchema mysql:5
 
--- Note this 
-To run mvn clean install, the DB needs to be up . So also for bringing up the app using  --> mvn  spring-boot:run . Why should DB be running when we are only r
-running unit test and mockMvc ??
+-- Note - To run mvn clean install, the DB needs to be up Running. 
