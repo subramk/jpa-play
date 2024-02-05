@@ -2,11 +2,10 @@ package com.jpa.play.ui.controller;
 
 import com.jpa.play.persistence.model.Users;
 import com.jpa.play.service.UserService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.OverrideAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -20,13 +19,13 @@ import java.util.List;
 
 import static java.util.List.of;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 // Mention the controllers , instead of all the controllers being loaded by default as part of the WebMvcTest SpringWeb Context.
 @WebMvcTest(UsersController.class)
+@OverrideAutoConfiguration(enabled = false)
 class UsersControllerTest {
 
     // This Places the Mocked Spring bean in the SLICED WEBMVC CONTEXT  sliced WebMVC is a lightweight Servlet context used in
@@ -43,7 +42,7 @@ class UsersControllerTest {
 
     @BeforeEach
     public void beforeEachTest(){
-        //this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
 
     }
     //@MockBean
@@ -53,9 +52,9 @@ class UsersControllerTest {
 
     @Test
     public void checkIfAllArePopulated() {
-        assertNotNull(mockMvc);
-        assertNotNull(userService);
-        assertNotNull(webApplicationContext);
+         assertNotNull(mockMvc);
+         assertNotNull(userService);
+         assertNotNull(webApplicationContext);
     }
 
     @Test

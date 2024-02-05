@@ -14,7 +14,7 @@
 *.iml
 *.ipr
 .idea/libraries
-
+*.icloud
 
 ### MVN ###
 .mvn

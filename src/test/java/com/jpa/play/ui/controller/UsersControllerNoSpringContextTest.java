@@ -26,11 +26,6 @@ public class UsersControllerNoSpringContextTest {
     public  void  setUp() {
         MockitoAnnotations.initMocks(this);
     }
-    @Test
-    //  Remove later once tests are sorted out...
-    public void dummy(){
-        assertTrue(true);
-    }
 
     @Test
     public void testFindAllUsers() throws Exception  {
