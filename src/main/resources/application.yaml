@@ -7,23 +7,23 @@ spring:
     broker-url:
   flyway:
     fail-on-missing-locations: true
-  jpa:
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.MySQLDialect
-    database-platform: org.hibernate.dialect.MySQLDialect
-    hibernate:
-      ddl-auto: update
+#  jpa:
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        dialect: org.hibernate.dialect.MySQLDialect
+#    database-platform: org.hibernate.dialect.MySQLDialect
+#    hibernate:
+#      ddl-auto: update
 
-  datasource:
-    test-while-idle: true
-    validation-query: SELECT 1
-    url: jdbc:mysql://localhost:3306/mySchema
-    username: root
-    password: secret
-    driver-class-name: com.mysql.cj.jdbc.Driver
+#  datasource:
+#    test-while-idle: true
+#    validation-query: SELECT 1
+#    url: jdbc:mysql://localhost:3306/mySchema
+#    username: root
+#    password: secret
+#    driver-class-name: com.mysql.cj.jdbc.Driver
 
   profiles:
     active: application
@@ -40,10 +40,10 @@ org:
 liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yml
 
-javax:
-  persistence:
-    jdbc:
-      url:jdbc:mysql://localhost:3306/db_example
+#javax:
+#  persistence:
+#    jdbc:
+#      url:jdbc:mysql://localhost:3306/db_example
 
 logging:
   level:
