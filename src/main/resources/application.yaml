@@ -1,12 +1,12 @@
 
 server:
-  port:8091
+  port:8080
 
 spring:
-  activemq:
-    broker-url:
-  flyway:
-    fail-on-missing-locations: true
+#  activemq:
+#    broker-url:
+#  flyway:
+#    fail-on-missing-locations: true
 #  jpa:
 #    show-sql: true
 #    properties:
@@ -17,13 +17,12 @@ spring:
 #    hibernate:
 #      ddl-auto: update
 
-#  datasource:
-#    test-while-idle: true
-#    validation-query: SELECT 1
-#    url: jdbc:mysql://localhost:3306/mySchema
-#    username: root
-#    password: secret
-#    driver-class-name: com.mysql.cj.jdbc.Driver
+  datasource:
+    test-while-idle: true
+    validation-query: SELECT 1
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: example
 
   profiles:
     active: application
@@ -33,12 +32,12 @@ spring:
 org:
   hibernate:
     dialect:
-      Dialect:org.hibernate.dialect.MySQLDialect
+      Dialect:org.hibernate.dialect.PostgreSQL8Dialect
     connection:
-      url:org.hibernate.dialect.MySQLDialect
+      url:org.hibernate.dialect.PostgreSQLDialect
 
-liquibase:
-    change-log: classpath:db/changelog/db.changelog-master.yml
+#liquibase:
+#    change-log: classpath:db/changelog/db.changelog-master.yml
 
 #javax:
 #  persistence:

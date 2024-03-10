@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "app", ignoreUnknownFields = false)
 
-public class AppProperties {
+public class    AppProperties {
   private int corePoolSize = 2;
 
   private int maxPoolSize = 50;

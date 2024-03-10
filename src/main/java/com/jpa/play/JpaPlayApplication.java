@@ -5,9 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication()
-
+@ComponentScan(basePackages="com.jpa.play.ui.controller") // scan all the controllers from here
 //@EnableJpaRepositories("com.jpa.play.persistence.repository")
 
 // If you turn OFF  the EnableJpaRepositories, then @WebMvcTest is turning off JPA and hence it will NOT ATTEMPT TO
@@ -21,6 +22,7 @@ public class JpaPlayApplication {
 
 	public static void main(String[] args)
 	{
+		System.out.println( " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`   JpaPlayApplication....SpringBootApplication hit");
 		SpringApplication.run(JpaPlayApplication.class, args);
 	}
 }

@@ -1,13 +1,18 @@
 # jpa-play
 Sandpit for SpringBoot + JPA + Tests - from basics to the Unknown !! 
 
-set up mysql via a docker command and get it to run on your local ( port 3306 to be free)
+-- port is configured to 8091
 
--- these are the mysql db details
-user=root and password=secret . These values are in the application.properties as well , so change with care ! 
+-- docker for postgres db   (database is postgres and password is example)
+   docker-compose up - to bring up the db 
 
--- docker for mysql - TODO . TBC 
-docker run -d --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_DATABASE=mySchema mysql:5
+-- run the src/main/resources/import.sql to populate the data in the DB 
 
-
+-- Ensure DB is up before you start the App.
 -- mvn spring-boot:run   - to start the application 
+
+postman url to check
+-- http://localhost:8080/books/list
+-- http://localhost:8080/books/isbn/978-1-2345-6789-0
+-- http://localhost:8080/books/title/The Shadow
+-- http://localhost:8080/books/title/Burning
