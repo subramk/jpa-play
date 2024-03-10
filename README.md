@@ -1,7 +1,7 @@
 # jpa-play
-Sandpit for SpringBoot + JPA + Tests - from basics to the Unknown !! 
+Sandpit for SpringBoot + JPA + Tests - from basics to advanced mapping strategies. 
 
--- port is configured to 8091 <TODO>
+-- TODO port is configured to something other than the standard 8080 port.  
 
 -- docker for postgres db   (database is postgres and password is example)
    docker-compose up - to bring up the db 
