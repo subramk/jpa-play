@@ -17,18 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.nonNull;
-import static java.util.stream.Collectors.toList;
 import static org.apache.commons.collections.CollectionUtils.isNotEmpty;
 
-@RequestMapping("/books")
-@RestController
+@RestController("/books")
 public class BookController {
 
-    private final BookService bookService;
+    private BookService bookService;
 
     public BookController(BookService bookService){
         this.bookService = bookService;

@@ -3,31 +3,29 @@ server:
   port:8080
 
 spring:
-#  activemq:
-#    broker-url:
-#  flyway:
-#    fail-on-missing-locations: true
-#  jpa:
-#    show-sql: true
-#    properties:
-#      hibernate:
-#        format_sql: true
-#        dialect: org.hibernate.dialect.MySQLDialect
-#    database-platform: org.hibernate.dialect.MySQLDialect
-#    hibernate:
-#      ddl-auto: update
-
   datasource:
-    test-while-idle: true
-    validation-query: SELECT 1
+    #test-while-idle: true
+    # validation-query: SELECT 1
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: example
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
 
   profiles:
     active: application
     default: application
-
+  sql:
+    init:
+      continue-on-error: true
 
 org:
   hibernate:
@@ -46,9 +44,11 @@ org:
 
 logging:
   level:
-    org:
-      hibernate:
-        type:
-          descriptor:
-            sql: TRACE
+    sql: debug
+    org.springframework.orm.jpa: TRACE
+    org.springframework.transaction: TRACE
+    org.hibernate.org.hibernate.type.descriptor.sql: TRACE
+
+
+
 

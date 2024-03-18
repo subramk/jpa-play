@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Component
 public interface BookService {
 
     Page<Book> getBooks(Pageable pageable);
