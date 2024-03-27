@@ -4,6 +4,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Function.*;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.counting;
@@ -17,11 +20,16 @@ public class LeastRepetitiveCharInString {
         String input2 = "aaabbbcccddeeaafg"; // should return f as it is the FIRST ONLY ONCE OCCURING CHAR .
         String input3 = "aaabbbcccddeeaaffgg"; // should return f as it is the FIRST ONLY ONCE OCCURING CHAR .
 
+        final Predicate<Map.Entry<String,Long>> occursTwiceOnly = element -> element.getValue() == 2;
+        final Predicate<Map.Entry<String,Long>> occursOnceOnlyPredicate = element -> element.getValue() == 1;
+
+
+
         System.out.println( " least occuring char is " + getLeastRepetitiveString(input3) ) ; // NONE FOUND
         System.out.println( " least occuring char is " + getLeastRepetitiveString(input2) ) ; // should return f
         System.out.println( " least occuring char is " + getLeastRepetitiveString(input) ) ; // should return o
     }
-        static String  getLeastRepetitiveString(String inputString){
+        public static String  getLeastRepetitiveString(String inputString){
 
             Optional<Map.Entry<String,Long>> leastRepeatedCharacter =
                      stream(inputString.split(""))
@@ -34,5 +42,25 @@ public class LeastRepetitiveCharInString {
             return leastRepeatedCharacter.isPresent() ?  leastRepeatedCharacter.get().getKey() : "None Found ";
 
         }
+
+        // 2nd Attempt using a Parameterized Predicate
+        public static String  getLeastRepetitiveStringUsingPredicate(String inputString,
+                                                                     Predicate<Map.Entry<String,Long>> occursOnceOnlyPredicate){
+
+
+
+            Optional<Map.Entry<String,Long>> leastRepeatedCharacter =
+                    stream(inputString.split(""))
+                            .collect(groupingBy(Function.identity(), LinkedHashMap::new, counting()))
+                            .entrySet()
+                            .stream()
+                            .filter( element -> occursOnceOnlyPredicate.test(element)) // uses predicate here.
+                            .findFirst();
+
+            return leastRepeatedCharacter.isPresent() ?  leastRepeatedCharacter.get().getKey() : "None Found ";
+
+        }
+
+
     }
 

@@ -31,5 +31,30 @@ CREATE TABLE "books" (
                          "author_id" bigint,
                          CONSTRAINT "books_pkey" PRIMARY KEY ("isbn")
 ) WITH (oids = false);
-
 ALTER TABLE ONLY "books" ADD CONSTRAINT "books_author_id_fkey" FOREIGN KEY (author_id) REFERENCES authors(id) NOT DEFERRABLE;
+
+
+CREATE TABLE "STUDENT_TBL" (
+                         "id" bigint not null primary key ,
+                         "name" varchar not null ,
+                         "age" bigint not null,
+                         "department" varchar
+) WITH (oids = false);
+
+CREATE TABLE "STUDENT_TBL" (
+                               "id" bigint not null primary key ,
+                               "name" varchar not null ,
+                               "age" bigint not null,
+                               "department" varchar
+) WITH (oids = false);
+
+CREATE TABLE "COURSE_TBL" (
+                               "id" bigint not null primary key ,
+                               "title" varchar not null ,
+                               "abbreviation" varchar not null ,
+                               "modules" bigint not null,
+                               "fee" double precision
+) WITH (oids = false);
+
+
+

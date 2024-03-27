@@ -26,6 +26,8 @@ spring:
   sql:
     init:
       continue-on-error: true
+  flyway:
+    baseline-on-migrate: true
 
 org:
   hibernate:
