@@ -1,8 +1,6 @@
 package com.jpa.play.persistence.repository;
 
 import com.jpa.play.persistence.domain.Book;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;

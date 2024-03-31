@@ -1,15 +1,10 @@
 package reickpil.de;
 
 import org.junit.jupiter.api.Test;
-//import org.mockito.MockedStatic;
-import org.mockito.Mockito;
-import rieckpil.de.Order;
 import rieckpil.de.OrderService;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 // Examples From https://rieckpil.de/mocking-static-methods-with-mockito-java-kotlin/
 

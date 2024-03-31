@@ -4,9 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.function.Function.*;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.counting;

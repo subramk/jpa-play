@@ -1,21 +1,16 @@
 package com.jpa.play.persistence.repository;
 
 import com.jpa.play.persistence.domain.MyProduct;
-import org.junit.BeforeClass;
-import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Random;
 import java.util.random.RandomGenerator;
 
 import static java.lang.Long.valueOf;
@@ -24,39 +19,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(org.junit.jupiter.api.MethodOrderer.OrderAnnotation.class)
 @DataJpaTest
-@Testcontainers
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.AUTO_CONFIGURED)
-public class MyProductRepositoryTest  {
+@Sql("classpath:/scripts/INIT_PRODUCTS.sql")
+public class MyProductRepositoryTest extends AbstractBaseTestContainer {
 
     @Autowired
     private MyProductRepository myProductRepository;
 
-    @BeforeClass
-    @Sql("/scripts/INIT_PRODUCTS.sql")
+    @BeforeAll
     public static void setupDb(){
+        System.out.println(" Setup DB has been run");
     }
 
-    @Test
-    @Order(3)
-    void countProducts() {
-        assertEquals(3, myProductRepository.count());
-    }
-
-    @Test
-    @Order(2)
-    void findById() {
-        assertTrue(myProductRepository.findById(1L).isPresent());
-    }
-
-    @Test
-    @Order(1)
-    void findAll() {
-        List<MyProduct> products = myProductRepository.findAll();
-        assertEquals(3, products.size());
-    }
 
     @Order(0)
-    void insertProduct() {
+    @Test
+    void saveAndRetrieveProduct() {
         int id = RandomGenerator.getDefault().nextInt();
         MyProduct bat = new MyProduct(valueOf(id),"cricket bat", BigDecimal.valueOf(35.00));
 
@@ -64,19 +41,19 @@ public class MyProductRepositoryTest  {
 
         assertAll(
                 () -> assertNotNull(savedBat.getId()),
-                () -> assertEquals(4, myProductRepository.count())
+                () -> assertEquals(7, myProductRepository.count())
         );
+  }
+
+    @Test
+    @Order(3)
+    void findOneProduct() {
+        List<MyProduct>  theProduct = myProductRepository.findAllByPriceGreaterThanEqual(BigDecimal.valueOf(3500L));
+        assertEquals(1, theProduct.size()) ;
     }
 
     @Test
-    @Order(52)
-    void deleteProduct() {
-        myProductRepository.deleteById(1L);
-        assertEquals(3, myProductRepository.count());
-    }
-
-    @Test
-    @Order(51)
+    @Order(4)
     void deleteAllInBatch() {
 
             int id = RandomGenerator.getDefault().nextInt();
@@ -87,14 +64,15 @@ public class MyProductRepositoryTest  {
             var products  = List.of(bat1,bat2,bat3);
             List<MyProduct> persistedProducts  = myProductRepository.saveAllAndFlush(products);
 
+        assertEquals( 9,  myProductRepository.findAll().size());
         myProductRepository.deleteAllInBatch();
         assertEquals(0, myProductRepository.count());
     }
 
-//    @Test
-//    @Order(7)
-//    void deleteAllProducts() {
-//        myProductRepository.deleteAll();
-//        assertEquals(0, myProductRepository.count());
-//    }
+    @Test
+    @Order(5)
+        void deleteAllProducts() {
+        myProductRepository.deleteAll();
+        assertEquals(0, myProductRepository.count());
+    }
 }

@@ -1,9 +1,9 @@
 package com.jpa.play.service;
 
-import java.util.List;
-
 import com.jpa.play.persistence.model.Users;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service

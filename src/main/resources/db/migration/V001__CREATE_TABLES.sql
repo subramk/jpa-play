@@ -9,7 +9,7 @@ CREATE SEQUENCE student_tbl_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775
 CREATE TABLE orders (
                         ID BIGSERIAL PRIMARY KEY,
                         TRACKING_NUMBER VARCHAR(255) UNIQUE NOT NULL,
-                        ITEMS jsonb
+                        ITEMS JSONB
 );
 
 CREATE TABLE books (

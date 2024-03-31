@@ -1,7 +1,6 @@
 package mistry.CustomAssertion;
 
 import mistry.Matchers.src.main.java.Player;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class PlayerStatisticsTestCustomMatcher {

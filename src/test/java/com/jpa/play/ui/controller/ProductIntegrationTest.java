@@ -1,27 +1,6 @@
 package com.jpa.play.ui.controller;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jpa.play.persistence.domain.Course;
-import com.jpa.play.ui.controller.StudentCourseController;
-import org.junit.Before;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.DynamicPropertyRegistry;
-import org.springframework.test.context.DynamicPropertySource;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.testcontainers.containers.PostgreSQLContainer;
-
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 //@AutoConfigureMockMvc
 //@SpringBootTest
 public class ProductIntegrationTest {

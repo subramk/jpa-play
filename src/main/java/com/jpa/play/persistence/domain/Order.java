@@ -1,23 +1,21 @@
 package com.jpa.play.persistence.domain;
 
+import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import lombok.*;
+import org.hibernate.annotations.Type;
 
 
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
+
 @Entity
 @Table(name = "orders")
-// Hibernate 5: @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class Order {
-
-    public Order() {}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +24,7 @@ public class Order {
     @Column(nullable = false, unique = true,name = "TRACKING_NUMBER")
     private String trackingNumber;
 
-    // Hibernate 5 @Type(type = "jsonb")
+    @Type(JsonBinaryType.class)
     @Column(columnDefinition = "jsonb")
     private String items;
-
-
-
 }

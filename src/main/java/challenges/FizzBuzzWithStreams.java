@@ -1,6 +1,5 @@
 package challenges;
 
-import java.util.function.Function;
 import java.util.stream.IntStream;
 
 // From https://medium.com/codex/fizzbuzz-in-java-8-aa70b3038736

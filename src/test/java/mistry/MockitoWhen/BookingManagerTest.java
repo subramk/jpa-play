@@ -2,20 +2,16 @@ package mistry.MockitoWhen;
 
 import mistry.MockitoWhen.src.main.java.BookingManager;
 import mistry.MockitoWhen.src.main.java.HotelDao;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.Extensions;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class BookingManagerTest {
