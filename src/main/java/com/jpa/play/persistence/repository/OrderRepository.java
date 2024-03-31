@@ -13,11 +13,11 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
                     """
                 SELECT *
                 FROM orders
-                WHERE items @> '[{"name": "MacBook Pro"}]';
+                WHERE items @> '[{"name": "Kindle"}]';
               """,
             nativeQuery = true)
 
-    List<Order> findAllContainingMacBookPro();
+    List<Order> findOrderWithKindle();
 
     List<Order> findAllByTrackingNumber(String trackingNumber);
 }

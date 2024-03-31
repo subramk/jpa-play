@@ -4,14 +4,20 @@ server:
 
 spring:
   datasource:
-    #test-while-idle: true
-    # validation-query: SELECT 1
     url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: example
+    username: springboot
+    password: springboot
+    hikari:
+      data-source-properties
+        stringtype=unspecified
+    tomcat:
+      connection-properties
+        stringtype=unspecified
+  hikari:
+    max-lifetime:600000
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create-drop
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
@@ -27,7 +33,9 @@ spring:
     init:
       continue-on-error: true
   flyway:
-    baseline-on-migrate: true
+    baseline-on-migrate: false
+    enabled: true
+    locations: classpath:db/migration
 
 org:
   hibernate:
@@ -50,7 +58,3 @@ logging:
     org.springframework.orm.jpa: TRACE
     org.springframework.transaction: TRACE
     org.hibernate.org.hibernate.type.descriptor.sql: TRACE
-
-
-
-

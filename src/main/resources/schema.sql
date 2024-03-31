@@ -10,6 +10,12 @@ CREATE SEQUENCE authors_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 92233720368547758
 DROP SEQUENCE IF EXISTS myproduct_id_seq;
 CREATE SEQUENCE myproduct_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
 
+DROP SEQUENCE IF EXISTS course_tbl_seq;
+CREATE SEQUENCE course_tbl_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
+
+DROP SEQUENCE IF EXISTS student_tbl_seq;
+CREATE SEQUENCE student_tbl_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
+
 
 create table myproduct(
                         id bigint DEFAULT nextval('myproduct_id_seq') NOT NULL primary key ,
@@ -32,14 +38,6 @@ CREATE TABLE "books" (
                          CONSTRAINT "books_pkey" PRIMARY KEY ("isbn")
 ) WITH (oids = false);
 ALTER TABLE ONLY "books" ADD CONSTRAINT "books_author_id_fkey" FOREIGN KEY (author_id) REFERENCES authors(id) NOT DEFERRABLE;
-
-
-CREATE TABLE "STUDENT_TBL" (
-                         "id" bigint not null primary key ,
-                         "name" varchar not null ,
-                         "age" bigint not null,
-                         "department" varchar
-) WITH (oids = false);
 
 CREATE TABLE "STUDENT_TBL" (
                                "id" bigint not null primary key ,

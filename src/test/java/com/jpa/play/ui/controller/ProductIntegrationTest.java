@@ -1,17 +1,31 @@
-package integration.com.jpa.play;
+package com.jpa.play.ui.controller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jpa.play.persistence.domain.Course;
+import com.jpa.play.ui.controller.StudentCourseController;
+import org.junit.Before;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
-//import org.testcontainers.containers.PostgreSQLContainer;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.testcontainers.containers.PostgreSQLContainer;
 
-@AutoConfigureMockMvc
-@SpringBootTest
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+//@AutoConfigureMockMvc
+//@SpringBootTest
 public class ProductIntegrationTest {
-//
+
 //    public static PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer("postgres:11.1")
 //            .withDatabaseName("integration-tests-db")
 //            .withUsername("sa")
@@ -20,30 +34,31 @@ public class ProductIntegrationTest {
 //    @Autowired
 //    private MockMvc mockMvc;
 //
-//    static MyPostgres mySQLContainer = new MySQLContainer("mysql:latest");
-//
-//
+//    @Autowired
+//    private ObjectMapper objectMapper;
+
+
 //    @DynamicPropertySource
 //    static void configureProperties(DynamicPropertyRegistry registry) {
-//        registry.add("spring.datasource.url", mySQLContainer::getJdbcUrl);
-//        registry.add("spring.datasource.username", mySQLContainer::getUsername);
-//        registry.add("spring.datasource.password", mySQLContainer::getPassword);
+//        registry.add("spring.datasource.url", postgreSQLContainer::getJdbcUrl);
+//        registry.add("spring.datasource.username", postgreSQLContainer::getUsername);
+//        registry.add("spring.datasource.password", postgreSQLContainer::getPassword);
 //    }
-//
+
 //    @BeforeAll
 //    static void beforeAll() {
-//        mySQLContainer.start();
+//        postgreSQLContainer.start();
 //    }
 //
 //    @AfterAll
 //    static void afterAll() {
-//        mySQLContainer.stop();
+//        postgreSQLContainer.stop();
 //    }
-//
+
 //    @Before
 //    public void setup() {
 //        this.mockMvc = MockMvcBuilders
-//                .standaloneSetup(CourseController.class)
+//                .standaloneSetup(StudentCourseController.class)
 //                .build();
 //    }
 //
@@ -51,19 +66,23 @@ public class ProductIntegrationTest {
 //    @Test
 //    public void addNewCourseTest() throws Exception {
 //        //build request body
+//
 //        Course course = Course.builder()
-//                .name("test-course")
-//                .price(100)
-//                .duration("0 month")
+//                .title("test-course")
+//                .fee(100.00)
+//                .abbreviation("TCC")
+//                .modules(3)
 //                .build();
+//
 //        //call controller endpoints
 //        mockMvc.perform(MockMvcRequestBuilders
 //                        .post("/courses")
 //                        .contentType("application/json")
 //                        .content(asJsonString(course))
+//                        //.content(objectMapper.writeValueAsString(course))
 //                        .accept("application/json"))
-//                .andExpect(status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
+//                        .andExpect(status().isOk())
+//                        .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
 //    }
 //
 //
@@ -73,7 +92,7 @@ public class ProductIntegrationTest {
 //                        .get("/courses")
 //                        .accept("application/json")
 //                        .contentType("application/json"))
-//                .andExpect(status().isOk())
+//                //.andExpect(status().isOk())
 //                .andExpect(MockMvcResultMatchers.jsonPath("$.*").exists())
 //                .andExpect(MockMvcResultMatchers.jsonPath("$.[0].id").value(1));
 //    }

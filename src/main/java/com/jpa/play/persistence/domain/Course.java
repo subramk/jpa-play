@@ -2,10 +2,7 @@ package com.jpa.play.persistence.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Set;
 import com.jpa.play.persistence.domain.Student;
@@ -16,11 +13,13 @@ import com.jpa.play.persistence.domain.Student;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Builder
 public class Course {
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "course_tbl_seq", sequenceName = "course_tbl_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "course_tbl_seq")
+
     private Long id;
     private String title;
     private String abbreviation;

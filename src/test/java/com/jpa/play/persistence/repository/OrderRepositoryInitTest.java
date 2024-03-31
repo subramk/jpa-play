@@ -4,6 +4,8 @@ package com.jpa.play.persistence.repository;
 // https://github.com/rieckpil/blog-tutorials/blob/master/spring-boot-datajpatest/src/test/java/de/rieckpil/blog/OrderRepositoryShortTest.java
 
 import com.jpa.play.persistence.domain.Order;
+import jakarta.transaction.Transactional;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +21,14 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-@DataJpaTest(
-        properties = {
-                "spring.test.database.replace=NONE",
-                "spring.datasource.url=jdbc:tc:postgresql:12:///springboot"
-        })
-public class OrderRepositoryInitTest {
+public class OrderRepositoryInitTest extends AbstractBaseTestContainer {
 
     @Autowired
     private OrderRepository orderRepository;
 
 
     @BeforeEach
-    void initData() {
+    public void initData() {
         orderRepository.save(
                 createOrder(
                         "42",
@@ -49,15 +46,11 @@ public class OrderRepositoryInitTest {
         orderRepository.save(createOrder("44", "[]"));
     }
 
-    @Test
-    void contextLoads() {
-        System.out.println("Context loads!");
-    }
 
     @Test
     void shouldReturnOrdersThatContainMacBookPro() {
-        List<Order> orders = orderRepository.findAllContainingMacBookPro();
-        assertEquals(2, orders.size());
+        List<Order> orders = orderRepository.findOrderWithKindle();
+        assertEquals(1, orders.size());
     }
 
     @Test

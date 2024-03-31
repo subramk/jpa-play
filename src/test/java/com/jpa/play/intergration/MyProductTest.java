@@ -1,6 +1,7 @@
-package com.jpa.play.persistence.repository;
+package com.jpa.play.intergration;
 
 import com.jpa.play.persistence.domain.MyProduct;
+import com.jpa.play.persistence.repository.AbstractBaseTestContainer;
 import jakarta.validation.Validator;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
