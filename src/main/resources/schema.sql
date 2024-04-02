@@ -16,6 +16,8 @@ CREATE SEQUENCE course_tbl_seq INCREMENT 1 MINVALUE 1 MAXVALUE 92233720368547758
 DROP SEQUENCE IF EXISTS student_tbl_seq;
 CREATE SEQUENCE student_tbl_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
 
+DROP SEQUENCE IF EXISTS mycourses_id_seq;
+CREATE SEQUENCE mycourses_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
 
 create table myproduct(
                         id bigint DEFAULT nextval('myproduct_id_seq') NOT NULL primary key ,
@@ -56,3 +58,17 @@ CREATE TABLE "COURSE_TBL" (
 
 
 
+CREATE TABLE MYCOURSES
+(
+    id    bigint DEFAULT nextval('mycourses_id_seq') NOT NULL PRIMARY KEY,
+    title VARCHAR(255),
+    primary key(id)
+);
+
+CREATE TABLE MYCOURSEDETAILS
+(
+    id          BIGINT PRIMARY KEY,
+    description TEXT,
+    CONSTRAINT  FK_MYCOURSES FOREIGN KEY (id) REFERENCES MYCOURSES (id),
+    primary key(id)
+);
