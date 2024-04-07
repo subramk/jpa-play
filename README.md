@@ -21,3 +21,7 @@ Some curl / postman url to check
 -- curl http://localhost:8080/books/title/The Shadow
 
 -- curl http://localhost:8080/books/title/Burning
+
+-- command to login into the docker container's postgres instance. 
+
+docker exec -it <container-id> psql -U postgres
