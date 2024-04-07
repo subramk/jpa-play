@@ -1,10 +1,12 @@
-drop table if exists product;
-DROP TABLE IF EXISTS "authors";
-DROP TABLE IF EXISTS "books";
-drop table if exists myproduct;
+drop  table if exists "product";
+drop  table if exists "authors";
+DROP TABLE IF EXISTS "books" cascade ;
+drop table if exists "myproduct" cascade;
+drop table if exists "MYCOURSEDETAILS" cascade;
+drop table if exists "MYCOURSES" cascade;
 
+drop SEQUENCE IF EXISTS authors_id_seq;
 
-DROP SEQUENCE IF EXISTS authors_id_seq;
 CREATE SEQUENCE authors_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
 
 DROP SEQUENCE IF EXISTS myproduct_id_seq;
@@ -20,11 +22,11 @@ DROP SEQUENCE IF EXISTS mycourses_id_seq;
 CREATE SEQUENCE mycourses_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
 
 create table myproduct(
-                        id bigint DEFAULT nextval('myproduct_id_seq') NOT NULL primary key ,
-                        name varchar(255) not null,
-                        price numeric(38,2) not null,
-                        primary key(id)
+                          id bigint DEFAULT nextval('myproduct_id_seq') NOT NULL primary key ,
+                          name varchar(255) not null,
+                          price numeric(38,2) not null
 );
+
 
 CREATE TABLE "authors" (
                            "id" bigint DEFAULT nextval('authors_id_seq') NOT NULL,
@@ -48,27 +50,29 @@ CREATE TABLE "STUDENT_TBL" (
                                "department" varchar
 ) WITH (oids = false);
 
+
 CREATE TABLE "COURSE_TBL" (
-                               "id" bigint not null primary key ,
-                               "title" varchar not null ,
-                               "abbreviation" varchar not null ,
-                               "modules" bigint not null,
-                               "fee" double precision
+                              "id" bigint not null primary key ,
+                              "title" varchar not null ,
+                              "abbreviation" varchar not null ,
+                              "modules" bigint not null,
+                              "fee" double precision
 ) WITH (oids = false);
 
+drop table if exists "MYCOURSEDETAILS";
+
+
+CREATE TABLE MYCOURSEDETAILS
+(
+    id BIGINT PRIMARY KEY,
+    description TEXT,
+    CONSTRAINT  FK_MYCOURSES FOREIGN KEY (id) REFERENCES MYCOURSES (id)
+);
 
 
 CREATE TABLE MYCOURSES
 (
     id    bigint DEFAULT nextval('mycourses_id_seq') NOT NULL PRIMARY KEY,
     title VARCHAR(255),
-    primary key(id)
-);
-
-CREATE TABLE MYCOURSEDETAILS
-(
-    id          BIGINT PRIMARY KEY,
-    description TEXT,
-    CONSTRAINT  FK_MYCOURSES FOREIGN KEY (id) REFERENCES MYCOURSES (id),
     primary key(id)
 );

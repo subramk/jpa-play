@@ -209,5 +209,3 @@ INSERT INTO "books" ("isbn", "title", "author_id") VALUES
                                                        ('978-2-2345-6789-1',	'The Cryptic Castle',	100);
 
 ALTER TABLE ONLY "books" ADD CONSTRAINT "books_author_id_fkey" FOREIGN KEY (author_id) REFERENCES authors(id) NOT DEFERRABLE;
-
--- 2023-03-04 14:45:58.424592+00
