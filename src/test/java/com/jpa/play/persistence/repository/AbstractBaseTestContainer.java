@@ -20,8 +20,8 @@ abstract public class AbstractBaseTestContainer {
     static {
         database =  new PostgreSQLContainer("postgres:16")
                 .withDatabaseName("postgres")
-                .withPassword("springboot")
-                .withUsername("springboot");
+                .withPassword("postgres")
+                .withUsername("postgres");
         database.start();
 
     }
