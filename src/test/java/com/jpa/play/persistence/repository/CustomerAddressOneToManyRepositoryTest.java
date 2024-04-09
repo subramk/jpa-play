@@ -18,8 +18,7 @@ import org.springframework.test.context.jdbc.Sql;
 import java.util.List;
 
 import static java.util.List.*;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
 
 /*
@@ -90,12 +89,7 @@ public class CustomerAddressOneToManyRepositoryTest extends  AbstractBaseTestCon
     @Sql("classpath:/scripts/INIT_CUSTOMER_WITH_ADDRESS.sql")
     public void deleteCustomerShouldCascadeDeleteAddresses() {
 
-        Customer customer  = customerRepository.findAll()
-                                .stream()
-                                .filter(cust -> cust.getId() == 100L)
-                                .findFirst()
-                                .get();
-
+        Customer customer  = customerRepository.findById(100L).get();
         customerRepository.delete(customer);
         customerRepository.flush();
 
@@ -107,9 +101,12 @@ public class CustomerAddressOneToManyRepositoryTest extends  AbstractBaseTestCon
         int  rows2 = jdbcTemplate.queryForObject(query2,Integer.class);
         assertEquals( rows2, 3) ;
 
-
-
-        // Assert.assertThat(customerId_forFirstAddress, equalTo(customerId_forSecondAddress ));
-
+        List<Customer> latest  = customerRepository.findAll();
+        Assert.assertTrue( latest.size() == 3 );
+        // TODO better way to iterate and assert using AssertJ ??
+//        latest.stream().allMatch( cust ->
+//            cust.getName().equals("Anez") ||
+//            cust.getName().equals("Satish") ||
+//            cust.getName().equals("DrJohn"));
     }
 }

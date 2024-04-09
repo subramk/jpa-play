@@ -19,11 +19,8 @@ public class Customer {
     @GeneratedValue
     @Column(name="custId")
     private Long id;
-    @Column(name="name")
     private String name;
-    @Column(name="email")
     private String email;
-    @Column(name="gender")
     private String gender;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer" , cascade = CascadeType.ALL)

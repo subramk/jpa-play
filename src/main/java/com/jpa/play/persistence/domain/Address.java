@@ -25,6 +25,7 @@ public class Address {
     private String line3;
     private String postCode;
 
+
     @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name="custId") // this is the ID on the 'One' side of the relationship.
     private Customer customer;

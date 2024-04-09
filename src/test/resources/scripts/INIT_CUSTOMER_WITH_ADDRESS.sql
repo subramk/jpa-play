@@ -1,7 +1,7 @@
 
 INSERT INTO customer (custId, name,email,gender) VALUES ('100', 'kasi','kasi@gmail.com','M');
 
-INSERT INTO customer (custId, name,email,gender) VALUES ('200', 'satish','sat@gmail.com','M');
+INSERT INTO customer (custId, name,email,gender) VALUES ('200', 'Satish','sat@gmail.com','M');
 INSERT INTO customer (custId, name,email,gender) VALUES ('300', 'Anez','Anez@gmail.com','M');
 INSERT INTO customer (custId, name,email,gender) VALUES ('400', 'DrJohn','PJ@gmail.com','M');
 
