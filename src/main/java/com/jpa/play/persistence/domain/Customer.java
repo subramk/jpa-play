@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 
-@Entity
+@Entity(name="customer")
 public class Customer {
 
     @Id
@@ -24,7 +24,6 @@ public class Customer {
     private String gender;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "customer" , cascade = CascadeType.ALL)
-    // @JoinColumn(name ="addressId",referencedColumnName = "addressId")
     private List<Address> addresses;
 
 
