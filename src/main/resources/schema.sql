@@ -1,3 +1,9 @@
+CREATE USER postgres PASSWORD 'postgres';
+CREATE DATABASE postgres;
+GRANT ALL PRIVILEGES ON DATABASE postgres TO postgres;
+ALTER ROLE postgres SUPERUSER;
+
+
 drop  table if exists "product";
 drop  table if exists "authors";
 DROP TABLE IF EXISTS "books" cascade ;

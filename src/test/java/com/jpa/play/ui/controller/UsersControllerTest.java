@@ -13,19 +13,26 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static java.util.List.of;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-// Mention the controllers , instead of all the controllers being loaded by default as part of the WebMvcTest SpringWeb Context.
+// Mention the Individual  Controller , instead of all the Controllers being loaded by default as part of the WebMvcTest
+// Context.
+// @SpringBootTest is more for a full container load Integration Test
+// @WebMvcTest is a 'Sliced' test - as it is only testing the Web Slice  - hence lighter and faster.
+
+
 @WebMvcTest(UsersController.class)
 @OverrideAutoConfiguration(enabled = false)
 class UsersControllerTest {
 
-    // This Places the Mocked Spring bean in the SLICED WEBMVC CONTEXT  sliced WebMVC is a lightweight Servlet context used in
-    // web tier tests on the Spring Framework.
+    // This Places the Mocked Spring bean in the SLICED WEBMVC CONTEXT  -  Sliced WebMVC is a lightweight Servlet context used in
+    // WebTier only.
+
     @MockBean
     private UserService userService;
 
@@ -33,7 +40,7 @@ class UsersControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    WebApplicationContext webApplicationContext;
+    private WebApplicationContext webApplicationContext;
 
 
     @BeforeEach
@@ -44,6 +51,7 @@ class UsersControllerTest {
     //@MockBean
     // HAVING the Controller Wired Here as a @MockBean overrides the mockMVC from interacting with a MOCK Controller when tests are Run - consequently
     // failing all Tests . YOU HAVE BEEN WARNED !!!
+    // No Need to mock the Controller here.
     // private UsersController controller;
 
     @Test
@@ -59,11 +67,14 @@ class UsersControllerTest {
         // NO ACTUAL CALL TO CONTROLLER IS REQUIRED.
         //ResponseEntity<Users> usersResponseEntity   = userController.findAll(anyString());
         // this mockMvc acts as a controller for our Testing purposes
+
+        when(userService.findAll()).thenReturn(List.of((Users.builder().id(1L).name("kasi").build())));
+
+        // mockMvc starts a lightweight servletContainer for us and hits the REAL  controller when this line is called.
         mockMvc.perform(get("/users/findAll")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        when(userService.findAll()).thenReturn(of(Users.builder().id(1L).name("kasi").build()));
         verify(userService, times(1)).findAll();
 
     }
@@ -79,8 +90,8 @@ class UsersControllerTest {
                 .andExpect(status().isOk());
 
         // mock when
-        when(userService.findByName(anyString())).thenReturn(user1);
-        // NO ACTUAL CALL TO CONTROLLER IS REQUIRED.
+        //when(userService.findByName(anyString())).thenReturn(user1);
+        // NO ACTUAL CALL TO CONTROLLER IS REQUIRED. This is done for us by the mockMVC
         //ResponseEntity<Users> usersResponseEntity   = userController.findByName(anyString());
         // this mockMvc acts as a controller for our Testing purposes
 

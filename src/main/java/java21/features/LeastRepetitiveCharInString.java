@@ -19,7 +19,8 @@ public class LeastRepetitiveCharInString {
         String input3 = "aaabbbcccddeeaaffgg"; // should return f as it is the FIRST ONLY ONCE OCCURING CHAR .
 
         final Predicate<Map.Entry<String,Long>> occursTwiceOnly = element -> element.getValue() == 2;
-        final Predicate<Map.Entry<String,Long>> occursOnceOnlyPredicate = element -> element.getValue() == 1;
+
+        final Predicate<Map.Entry<String,Long>> occursOnlyOnce = element -> element.getValue() == 1;
 
 
 
@@ -34,7 +35,7 @@ public class LeastRepetitiveCharInString {
                     .collect(groupingBy(Function.identity(), LinkedHashMap::new, counting()))
                     .entrySet()
                     .stream()
-                    .filter(x -> x.getValue() == 1) // character occuring only once
+                    .filter(x -> x.getValue() == 1) // Character Occuring ONLY ONCE.
                     .findFirst();
 
             return leastRepeatedCharacter.isPresent() ?  leastRepeatedCharacter.get().getKey() : "None Found ";
@@ -45,9 +46,7 @@ public class LeastRepetitiveCharInString {
         public static String  getLeastRepetitiveStringUsingPredicate(String inputString,
                                                                      Predicate<Map.Entry<String,Long>> occursOnceOnlyPredicate){
 
-
-
-            Optional<Map.Entry<String,Long>> leastRepeatedCharacter =
+                Optional<Map.Entry<String,Long>> leastRepeatedCharacter =
                     stream(inputString.split(""))
                             .collect(groupingBy(Function.identity(), LinkedHashMap::new, counting()))
                             .entrySet()

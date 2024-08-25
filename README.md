@@ -3,11 +3,13 @@ Sandpit for SpringBoot + JPA + Tests - from basics to advanced mapping strategie
 
 -- server port is 8090 (see application.properties)  
 -- docker for postgres db   (database is postgres and password is postgres)
--- start up the Postgres 
-   docker-compose up - to bring up the db ( port 5433 )
+
+-- start up the Postgres - to bring up the db ( port 5433 ) 
+   
+   docker compose up 
+
 -- Ensure DB is up before you start the App.
 -- popualte DB - -- run the src/main/resources/import.sql to populate the data in the Postgres DB
-
 
 -- mvn spring-boot:run   - to start the application (note DB starts up on 5433 port )
 -- run the src/main/resources/import.sql to populate the data in the Postgres DB 

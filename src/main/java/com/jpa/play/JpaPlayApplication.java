@@ -6,9 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 
-@SpringBootApplication(scanBasePackages = {
-		"com.jpa.play"}
-)
+@SpringBootApplication(scanBasePackages = {"com.jpa.play"})
 
 // scan all the controllers from here
 //@EnableJpaRepositories("com.jpa.play.persistence.repository")
